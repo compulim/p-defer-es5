@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <script src="https://unpkg.com/core-js@2/client/core.min.js"></script>
+    <script src="../dist/p-defer-es5.production.min.js"></script>
+  </head>
+  <body>
+    <script>
+      const deferred = createDeferred();
+
+      deferred.promise.then(function (res) {
+        console.log('resolved', res);
+      });
+
+      deferred.resolve(123);
+    </script>
+  </body>
+</html>

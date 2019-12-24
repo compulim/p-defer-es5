@@ -1,0 +1,49 @@
+{
+  "name": "p-defer-es5",
+  "version": "1.0.1-0",
+  "description": "",
+  "files": [
+    "dist/**/*",
+    "src/**/*",
+    "webpack-lib.config.js"
+  ],
+  "main": "lib/index.js",
+  "scripts": {
+    "postinstall": "webpack --config webpack-lib.config.js",
+    "prepublishOnly": "webpack --config webpack-dist.config.js",
+    "pretest": "npm run prepublishOnly",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/compulim/p-defer-es5.git"
+  },
+  "keywords": [
+    "abort",
+    "abort controller",
+    "abortcontroller",
+    "p-defer",
+    "promise"
+  ],
+  "author": "William Wong <compulim@hotmail.com> (http://compulim.info/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/compulim/p-defer-es5/issues"
+  },
+  "homepage": "https://github.com/compulim/p-defer-es5#readme",
+  "dependencies": {
+    "@babel/core": "^7",
+    "@babel/preset-env": "^7",
+    "babel-loader": "^8",
+    "webpack": "^4",
+    "webpack-cli": "^3"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.7.7",
+    "p-defer": "^3.0.0",
+    "jest": "^24.9.0"
+  },
+  "peerDependencies": {
+    "p-defer": "*"
+  }
+}
