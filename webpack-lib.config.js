@@ -8,9 +8,6 @@ module.exports = {
   module: {
     rules: [
       {
-        include: [
-          join(__dirname, 'node_modules/p-defer/')
-        ],
         test: /\.m?js$/iu,
         use: {
           loader: 'babel-loader',
