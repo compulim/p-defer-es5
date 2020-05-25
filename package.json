@@ -9,8 +9,8 @@
   ],
   "main": "lib/index.js",
   "scripts": {
-    "postinstall": "webpack --config webpack-lib.config.js",
-    "prepublishOnly": "webpack --config webpack-dist.config.js",
+    "postinstall": "npx -p webpack-cli@3.3.11 -p webpack@4.43.0 webpack-cli --config webpack-lib.config.js",
+    "prepublishOnly": "npx -p webpack-cli@3.3.11 -p webpack@4.43.0 webpack-cli --config webpack-dist.config.js",
     "pretest": "npm run prepublishOnly",
     "test": "jest"
   },
