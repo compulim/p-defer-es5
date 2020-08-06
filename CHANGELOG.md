@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.1] - 2020-08-06
+
+### Changed
+
+- Revert `npx` because [`.npmrc` issues with `NpmAuthenticateV0`](https://github.com/microsoft/azure-pipelines-tasks/issues/13265)
+
 ## [1.2.0] - 2020-08-06
 
 ### Changed
@@ -16,7 +22,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
    - [`babel-loader@8.1.0`](https://npmjs.com/package/babel-loader)
    - [`webpack@4.44.1`](https://npmjs.com/package/webpack)
    - [`webpack-cli@3.3.12`](https://npmjs.com/package/webpack-cli)
-- Revert `npx` because [`.npmrc` issues with `NpmAuthenticateV0`](https://github.com/microsoft/azure-pipelines-tasks/issues/13265)
 
 ## [1.1.0] - 2020-05-25
 
