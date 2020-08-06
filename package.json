@@ -1,6 +1,6 @@
 {
   "name": "p-defer-es5",
-  "version": "1.2.1-0",
+  "version": "1.2.2-0",
   "description": "",
   "files": [
     "dist/**/*",
@@ -9,8 +9,8 @@
   ],
   "main": "lib/index.js",
   "scripts": {
-    "postinstall": "npx -p webpack-cli@3.3.11 -p webpack@4.43.0 webpack-cli --config webpack-lib.config.js",
-    "prepublishOnly": "npx -p webpack-cli@3.3.11 -p webpack@4.43.0 webpack-cli --config webpack-dist.config.js",
+    "postinstall": "webpack-cli --config webpack-lib.config.js",
+    "prepublishOnly": "webpack-cli --config webpack-dist.config.js",
     "pretest": "npm run prepublishOnly",
     "test": "jest"
   },
