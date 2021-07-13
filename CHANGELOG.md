@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.2] - 2021-07-13
+
 ### Changed
 
 - Bumped dependencies, in PR [#16](https://github.com/compulim/p-defer-es5/pull/16)
