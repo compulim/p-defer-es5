@@ -5,7 +5,7 @@
 test('Using bundle', async () => {
   require('../dist/p-defer-es5.production.min');
 
-  const { promise, resolve } = createDeferred();
+  const { promise, resolve } = window.createDeferred();
 
   setTimeout(() => resolve(123), 0);
 
@@ -15,7 +15,7 @@ test('Using bundle', async () => {
 test('Using package', async () => {
   require('..');
 
-  const { promise, resolve } = createDeferred();
+  const { promise, resolve } = window.createDeferred();
 
   setTimeout(() => resolve(123), 0);
 
