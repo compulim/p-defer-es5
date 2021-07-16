@@ -1,8 +1,8 @@
 {
   "scripts": {
     "build": "npm run build:esbuild:cjs && npm run build:esbuild:esm && npm run build:webpack:cjs && npm run build:webpack:esm",
-    "build:esbuild:cjs": "esbuild ./main.js --bundle --format=cjs --outfile=./dist/main.esbuild-cjs.js",
-    "build:esbuild:esm": "esbuild ./main.js --bundle --format=esm --outfile=./dist/main.esbuild-esm.js",
+    "build:esbuild:cjs": "esbuild ./web.js --bundle --format=cjs --outfile=./dist/main.esbuild-cjs.js",
+    "build:esbuild:esm": "esbuild ./web.js --bundle --format=esm --outfile=./dist/main.esbuild-esm.js",
     "build:webpack:cjs": "webpack --config webpack.cjs.config.js",
     "build:webpack:esm": "webpack --config webpack.esm.config.js",
     "test": "jest"

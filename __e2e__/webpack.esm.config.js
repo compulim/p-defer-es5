@@ -1,6 +1,6 @@
 module.exports = {
-  entry: './main.mjs',
-  mode: 'development',
+  entry: './web.js',
+  mode: 'production',
   output: {
     filename: 'main.webpack-esm.js'
   }

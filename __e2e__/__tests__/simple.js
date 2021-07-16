@@ -4,8 +4,8 @@ const { join } = require('path');
 test.each([
   ['esbuild to bundle CommonJS', '../dist/main.esbuild-cjs.js'],
   ['esbuild to bundle ES Module', '../dist/main.esbuild-esm.js'],
-  ['Node.js to run CommonJS', '../main.js'],
-  ['Node.js to run ES Module', '../main.mjs'],
+  ['Node.js to run CommonJS', '../node.js'],
+  ['Node.js to run ES Module', '../node.mjs'],
   ['Webpack to bundle CommonJS', '../dist/main.webpack-cjs.js'],
   ['Webpack to bundle ES Module', '../dist/main.webpack-esm.js']
 ])('Code using %s should work', async (_, filename) => {
