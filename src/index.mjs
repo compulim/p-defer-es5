@@ -1,3 +1,3 @@
 import createDeferred from 'p-defer';
 
-module.exports = createDeferred;
+export default createDeferred;

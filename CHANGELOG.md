@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Added ES Module entrypoint, in PR [#19](https://github.com/compulim/p-defer-es5/pull/19)
 
+### Changed
+
+- Move to end-to-end tests from unit tests, in PR [#XXX](https://github.com/compulim/p-defer-es5/pull/XXX)
+
 ### Fixed
 
 - Fixed [#17](https://github.com/compulim/p-defer-es5/issues/17), moved to [`esbuild`](https://npmjs.com/package/esbuild) from Webpack, in PR [#19](https://github.com/compulim/p-defer-es5/pull/19)

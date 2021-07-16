@@ -6,12 +6,14 @@ name: Node.js CI
 on:
   push:
     branches:
+      - main
       - master
     tags:
       - '*'
 
   pull_request:
     branches:
+      - main
       - master
 
 jobs:
@@ -38,8 +40,6 @@ jobs:
 
       - run: npm run build --if-present
 
-      - run: npm test
-
       # This package requires /lib to be removed before packaging
       - run: rm -r lib
 
@@ -48,8 +48,38 @@ jobs:
       - uses: actions/upload-artifact@v2
         if: ${{ matrix.node-version == '16.x' }}
         with:
+          name: e2e-tests
+          path: '__e2e__/**/*'
+
+      - uses: actions/upload-artifact@v2
+        if: ${{ matrix.node-version == '16.x' }}
+        with:
           name: npm-tarball
           path: '*.tgz'
+
+  e2e-test:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/download-artifact@v2
+        with:
+          name: e2e-tests
+
+      - uses: actions/download-artifact@v2
+        with:
+          name: npm-tarball
+
+      - name: Install dependencies
+        run: |
+          npm install esbuild jest webpack webpack-cli
+          npm install p-defer *.tgz
+
+      - name: Build tests
+        run: npm run build
+
+      - name: Run tests
+        run: npm test
 
   publish:
     needs: build

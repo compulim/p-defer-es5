@@ -11,9 +11,9 @@
   "main": "lib/index.js",
   "module": "lib/esm/index.mjs",
   "scripts": {
-    "build:cjs": "esbuild ./src/index.js --bundle --format=cjs | babel --config-file ./babel.config.cjs.json --filename index.js --out-file lib/index.js",
-    "build:esm": "esbuild ./src/index.js --bundle --format=esm | babel --config-file ./babel.config.esm.json --filename index.mjs --out-file lib/esm/index.mjs",
-    "build:umd": "mkdir dist && esbuild ./src/polyfill.js --bundle --format=iife | babel --config-file ./babel.config.esm.json --filename polyfill.js | terser --compress --mangle --output dist/p-defer-es5.production.min.js",
+    "build:cjs": "esbuild ./src/index.js --bundle --format=cjs --outfile=lib/bundle.js && babel ./lib/bundle.js --config-file ./babel.config.cjs.json --out-file lib/index.js",
+    "build:esm": "esbuild ./src/index.mjs --bundle --format=esm --outfile=lib/esm/bundle.mjs && babel ./lib/esm/bundle.mjs --config-file ./babel.config.esm.json --out-file lib/esm/index.mjs",
+    "build:umd": "mkdir -p dist && esbuild ./src/polyfill.js --bundle --format=iife --outfile=lib/ponyfill.bundle.js && babel ./lib/ponyfill.bundle.js --config-file ./babel.config.esm.json | terser --compress --mangle --output dist/p-defer-es5.production.min.js",
     "postinstall": "npm run build:cjs && npm run build:esm",
     "prepublishOnly": "npm run build:umd",
     "pretest": "npm run prepublishOnly",
@@ -42,7 +42,6 @@
     "terser": "5.7.1"
   },
   "devDependencies": {
-    "jest": "^27.0.6",
     "p-defer": "^4.0.0"
   },
   "peerDependencies": {
