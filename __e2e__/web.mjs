@@ -8,7 +8,7 @@
 // - If we "require", the default imported object is { default: () => any }.
 // - If we "require" and "mainFields" is "main", the default imported object is () => any.
 
-const createDeferred = require('p-defer-es5');
+import createDeferred from 'p-defer-es5';
 
 const { promise, resolve } = createDeferred();
 
