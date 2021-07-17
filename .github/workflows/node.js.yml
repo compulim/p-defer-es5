@@ -45,11 +45,23 @@ jobs:
 
       - run: npm pack
 
+      - name: Pack github-pages
+        if: ${{ matrix.node-version == '16.x' }}
+        run: |
+          cp dist/* public
+          cd public
+
       - uses: actions/upload-artifact@v2
         if: ${{ matrix.node-version == '16.x' }}
         with:
           name: e2e-tests
           path: '__e2e__/**/*'
+
+      - uses: actions/upload-artifact@v2
+        if: ${{ matrix.node-version == '16.x' }}
+        with:
+          name: gh-pages
+          path: 'public/**/*'
 
       - uses: actions/upload-artifact@v2
         if: ${{ matrix.node-version == '16.x' }}
@@ -124,7 +136,28 @@ jobs:
       - name: Run tests
         run: npm test
 
-  publish:
+  publish-pages:
+    # if: ${{ startsWith(github.ref, 'refs/heads/') || startsWith(github.ref, 'refs/tags/') }}
+
+    needs:
+      - build
+      - test-linux
+      - test-windows
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/download-artifact@v2
+        with:
+          name: gh-pages
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: .
+
+  publish-npm:
     if: ${{ startsWith(github.ref, 'refs/heads/') || startsWith(github.ref, 'refs/tags/') }}
 
     needs:
