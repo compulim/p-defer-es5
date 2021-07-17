@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "build": "npm run build:esbuild:commonjs && npm run build:esbuild:esm && npm run build:webpack:commonjs && npm run build:webpack:esm",
+    "build:esbuild:commonjs": "esbuild ./web.js --bundle --format=cjs --outfile=./dist/main.esbuild-commonjs.js",
+    "build:esbuild:esm": "esbuild ./web.mjs --bundle --format=esm --outfile=./dist/main.esbuild-esm.js",
+    "build:webpack:commonjs": "webpack --config webpack.commonjs.config.js",
+    "build:webpack:esm": "webpack --config webpack.esm.config.js",
+    "test": "jest"
+  }
+}

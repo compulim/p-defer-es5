@@ -1,18 +1,31 @@
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
-    <script src="https://unpkg.com/core-js@2/client/core.min.js"></script>
-    <script src="../dist/p-defer-es5.production.min.js"></script>
+    <script src="p-defer-es5.production.min.js"></script>
   </head>
   <body>
+    <p class="ponyfill-note" hidden>This browser does not support Promise. We will ponyfill internally and not polluting global namespace.</p>
+    <button class="resolve-button" type="button">Click here to resolve the deferred object</button>
     <script>
       const deferred = createDeferred();
 
       deferred.promise.then(function (res) {
-        console.log('resolved', res);
+        const resultElement = document.createElement('p');
+
+        resultElement.textContent = 'Result is "' + res + '".';
+
+        document.body.appendChild(resultElement);
       });
 
-      deferred.resolve(123);
+      document.querySelector('.resolve-button').addEventListener('click', function () {
+        document.querySelector('.resolve-button').setAttribute('disabled', '');
+
+        deferred.resolve(new Date().toISOString());
+      });
+
+      if (!window.Promise) {
+        document.querySelector('.ponyfill-note').removeAttribute('hidden');
+      }
     </script>
   </body>
 </html>
