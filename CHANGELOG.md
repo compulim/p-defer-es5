@@ -12,7 +12,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Move to end-to-end tests from unit tests, in PR [#XXX](https://github.com/compulim/p-defer-es5/pull/XXX)
+- Move to end-to-end tests from unit tests, in PR [#20](https://github.com/compulim/p-defer-es5/pull/20)
+- Ponyfill `globalThis` and `Promise` via `core-js-pure` by usage, in PR [#20](https://github.com/compulim/p-defer-es5/pull/20)
 
 ### Fixed
 
