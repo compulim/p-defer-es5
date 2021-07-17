@@ -137,7 +137,7 @@ jobs:
         run: npm test
 
   publish-pages:
-    # if: ${{ startsWith(github.ref, 'refs/heads/') || startsWith(github.ref, 'refs/tags/') }}
+    if: ${{ startsWith(github.ref, 'refs/heads/') || startsWith(github.ref, 'refs/tags/') }}
 
     needs:
       - build
