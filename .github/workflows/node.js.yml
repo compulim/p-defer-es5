@@ -107,7 +107,10 @@ jobs:
         run: npm test
 
   publish:
-    needs: build
+    needs:
+      - build
+      - e2e-test-linux
+      - e2e-test-windows
     runs-on: ubuntu-latest
     if: ${{ startsWith(github.ref, 'refs/heads/') || startsWith(github.ref, 'refs/tags/') }}
 
