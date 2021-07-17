@@ -11,10 +11,10 @@
   "main": "lib/index.js",
   "module": "lib/esm/index.mjs",
   "scripts": {
-    "postinstall:commonjs:bundle": "esbuild ./src/index.js --bundle --format=cjs --outfile=./lib/index.bundled.js",
+    "postinstall:commonjs:bundle": "./scripts/esbuild p-defer ./src/index.js cjs ./lib/index.bundled.js",
     "postinstall:commonjs:transpile": "babel ./lib/index.bundled.js --config-file ./babel.config.commonjs.json --out-file ./lib/index.js",
     "postinstall:commonjs": "npm run postinstall:commonjs:bundle && npm run postinstall:commonjs:transpile",
-    "postinstall:esm:bundle": "esbuild ./src/index.mjs --bundle --format=esm --outfile=lib/esm/index.bundled.mjs",
+    "postinstall:esm:bundle": "./scripts/esbuild p-defer ./src/index.mjs esm lib/esm/index.bundled.mjs",
     "postinstall:esm:transpile": "babel ./lib/esm/index.bundled.mjs --config-file ./babel.config.esm.json --out-file ./lib/esm/index.mjs",
     "postinstall:esm": "npm run postinstall:esm:bundle && npm run postinstall:esm:transpile",
     "postinstall": "npm run postinstall:commonjs && npm run postinstall:esm",

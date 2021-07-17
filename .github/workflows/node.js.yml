@@ -61,7 +61,16 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        node-version: [12.x, 14.x, 16.x]
+
     steps:
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
       - uses: actions/download-artifact@v2
         with:
           name: e2e-tests
@@ -85,7 +94,16 @@ jobs:
     needs: build
     runs-on: windows-latest
 
+    strategy:
+      matrix:
+        node-version: [12.x, 14.x, 16.x]
+
     steps:
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
       - uses: actions/download-artifact@v2
         with:
           name: e2e-tests
@@ -107,12 +125,14 @@ jobs:
         run: npm test
 
   publish:
+    if: ${{ startsWith(github.ref, 'refs/heads/') || startsWith(github.ref, 'refs/tags/') }}
+
     needs:
       - build
       - test-linux
       - test-windows
+
     runs-on: ubuntu-latest
-    if: ${{ startsWith(github.ref, 'refs/heads/') || startsWith(github.ref, 'refs/tags/') }}
 
     steps:
       - uses: actions/download-artifact@v2
