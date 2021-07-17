@@ -57,9 +57,33 @@ jobs:
           name: npm-tarball
           path: '*.tgz'
 
-  e2e-test:
+  e2e-test-linux:
     needs: build
     runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/download-artifact@v2
+        with:
+          name: e2e-tests
+
+      - uses: actions/download-artifact@v2
+        with:
+          name: npm-tarball
+
+      - name: Install dependencies
+        run: |
+          npm install esbuild jest webpack webpack-cli
+          npm install p-defer *.tgz
+
+      - name: Build tests
+        run: npm run build
+
+      - name: Run tests
+        run: npm test
+
+  e2e-test-windows:
+    needs: build
+    runs-on: windows-latest
 
     steps:
       - uses: actions/download-artifact@v2
