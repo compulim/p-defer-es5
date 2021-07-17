@@ -2,7 +2,7 @@ module.exports = {
   entry: './web.js',
   mode: 'production',
   output: {
-    filename: 'main.webpack-cjs.js'
+    filename: 'main.webpack-commonjs.js'
   },
   resolve: {
     mainFields: ['main']
