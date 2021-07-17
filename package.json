@@ -6,15 +6,16 @@
     "babel.config.commonjs.json",
     "babel.config.esm.json",
     "dist/**/*",
+    "scripts/**/*",
     "src/**/*"
   ],
   "main": "lib/index.js",
   "module": "lib/esm/index.mjs",
   "scripts": {
-    "postinstall:commonjs:bundle": "node ./scripts/esbuild p-defer ./src/index.js cjs ./lib/index.bundled.js",
+    "postinstall:commonjs:bundle": "node ./scripts/esbuild.mjs p-defer ./src/index.js cjs ./lib/index.bundled.js",
     "postinstall:commonjs:transpile": "babel ./lib/index.bundled.js --config-file ./babel.config.commonjs.json --out-file ./lib/index.js",
     "postinstall:commonjs": "npm run postinstall:commonjs:bundle && npm run postinstall:commonjs:transpile",
-    "postinstall:esm:bundle": "node ./scripts/esbuild p-defer ./src/index.mjs esm lib/esm/index.bundled.mjs",
+    "postinstall:esm:bundle": "node ./scripts/esbuild.mjs p-defer ./src/index.mjs esm lib/esm/index.bundled.mjs",
     "postinstall:esm:transpile": "babel ./lib/esm/index.bundled.mjs --config-file ./babel.config.esm.json --out-file ./lib/esm/index.mjs",
     "postinstall:esm": "npm run postinstall:esm:bundle && npm run postinstall:esm:transpile",
     "postinstall": "npm run postinstall:commonjs && npm run postinstall:esm",
@@ -49,6 +50,7 @@
     "@babel/runtime-corejs3": "^7.14.7",
     "esbuild": "^0.12.15",
     "mkdirp": "^1.0.4",
+    "read-pkg-up": "^8.0.0",
     "terser": "^5.7.1"
   },
   "devDependencies": {
