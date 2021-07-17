@@ -97,7 +97,8 @@ jobs:
       - name: Install dependencies
         run: |
           npm install esbuild jest webpack webpack-cli
-          npm install p-defer *.tgz
+          ren p-defer-es5-*.tgz p-defer-es5.tgz
+          npm install p-defer p-defer-es5.tgz
 
       - name: Build tests
         run: npm run build
