@@ -38,7 +38,7 @@ jobs:
 
       - run: npm ci
 
-      - run: npm run build --if-present
+      - run: npm run prepublishOnly --if-present
 
       # This package requires /lib to be removed before packaging
       - run: rm -r lib
