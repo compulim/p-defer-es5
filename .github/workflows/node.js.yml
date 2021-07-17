@@ -57,7 +57,7 @@ jobs:
           name: npm-tarball
           path: '*.tgz'
 
-  e2e-test-linux:
+  test-linux:
     needs: build
     runs-on: ubuntu-latest
 
@@ -81,7 +81,7 @@ jobs:
       - name: Run tests
         run: npm test
 
-  e2e-test-windows:
+  test-windows:
     needs: build
     runs-on: windows-latest
 
@@ -109,8 +109,8 @@ jobs:
   publish:
     needs:
       - build
-      - e2e-test-linux
-      - e2e-test-windows
+      - test-linux
+      - test-windows
     runs-on: ubuntu-latest
     if: ${{ startsWith(github.ref, 'refs/heads/') || startsWith(github.ref, 'refs/tags/') }}
 
