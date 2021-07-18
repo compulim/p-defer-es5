@@ -49,7 +49,7 @@ jobs:
 
       - name: Build package.json
         run: |
-          echo { "esbuild": "*", "jest": "*", "p-defer": "*", "p-defer-es5": "${{ github.event.inputs.version }}", "webpack": "*", "webpack-cli": "*" } > package.json
+          echo { \"esbuild\": \"*\", \"jest\": \"*\", \"p-defer\": \"*\", \"p-defer-es5\": \"${{ github.event.inputs.version }}\", \"webpack\": \"*\", \"webpack-cli\": \"*\" } > package.json
 
       - name: Install dependencies
         run: npm install
