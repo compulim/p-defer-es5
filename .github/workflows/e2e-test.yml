@@ -43,16 +43,14 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
+      - name: Install dependencies
+        run: |
+          echo { \"esbuild\": \"*\", \"jest\": \"*\", \"p-defer\": \"*\", \"p-defer-es5\": \"${{ github.event.inputs.version }}\", \"webpack\": \"*\", \"webpack-cli\": \"*\" } > package.json
+          npm install
+
       - uses: actions/download-artifact@v2
         with:
           name: e2e-tests
-
-      - name: Build package.json
-        run: |
-          echo { \"esbuild\": \"*\", \"jest\": \"*\", \"p-defer\": \"*\", \"p-defer-es5\": \"${{ github.event.inputs.version }}\", \"webpack\": \"*\", \"webpack-cli\": \"*\" } > package.json
-
-      - name: Install dependencies
-        run: npm install
 
       - name: Build tests
         run: npm run build
