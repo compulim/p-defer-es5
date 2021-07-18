@@ -6,7 +6,7 @@ name: Manually triggered test
 on:
   workflow_dispatch:
     inputs:
-      name:
+      version:
         description: 'Version'
         required: true
         default: 'master'
@@ -48,7 +48,7 @@ jobs:
           name: e2e-tests
 
       - name: Install dependencies
-        run: npm install esbuild jest p-defer p-defer-es5 webpack webpack-cli
+        run: npm install esbuild jest p-defer p-defer-es5@${{ github.event.inputs.version }} webpack webpack-cli
 
       - name: Build tests
         run: npm run build
@@ -75,7 +75,7 @@ jobs:
           name: e2e-tests
 
       - name: Install dependencies
-        run: npm install esbuild jest p-defer p-defer-es5 webpack webpack-cli
+        run: npm install esbuild jest p-defer p-defer-es5@${{ github.event.inputs.version }} webpack webpack-cli
 
       - name: Build tests
         run: npm run build
