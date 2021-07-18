@@ -46,7 +46,7 @@ jobs:
       # NPM@7 is buggy right now, we will use NPM@6 until Node.js 16.x go LTS.
       - name: Use NPM@6 on Node.js 16.x
         if: ${{ matrix.node-version == '16.x' }}
-        run: npm i -g npm@7 --registry=https://registry.npmjs.org
+        run: npm i -g npm@6 --registry=https://registry.npmjs.org
 
       - name: Install dependencies
         run: |
@@ -80,7 +80,7 @@ jobs:
       # NPM@7 is buggy right now, we will use NPM@6 until Node.js 16.x go LTS.
       - name: Use NPM@6 on Node.js 16.x
         if: ${{ matrix.node-version == '16.x' }}
-        run: npm i -g npm@7 --registry=https://registry.npmjs.org
+        run: npm i -g npm@6 --registry=https://registry.npmjs.org
 
       - name: Install dependencies
         run: |
