@@ -47,8 +47,12 @@ jobs:
         with:
           name: e2e-tests
 
+      - name: Build package.json
+        run: |
+          echo { "esbuild": "*", "jest": "*", "p-defer": "*", "p-defer-es5": "${{ github.event.inputs.version }}", "webpack": "*", "webpack-cli": "*" } > package.json
+
       - name: Install dependencies
-        run: npm install esbuild jest p-defer p-defer-es5@${{ github.event.inputs.version }} webpack webpack-cli
+        run: npm install
 
       - name: Build tests
         run: npm run build
@@ -74,8 +78,12 @@ jobs:
         with:
           name: e2e-tests
 
+      - name: Build package.json
+        run: |
+          echo { "esbuild": "*", "jest": "*", "p-defer": "*", "p-defer-es5": "${{ github.event.inputs.version }}", "webpack": "*", "webpack-cli": "*" } > package.json
+
       - name: Install dependencies
-        run: npm install esbuild jest p-defer p-defer-es5@${{ github.event.inputs.version }} webpack webpack-cli
+        run: npm install
 
       - name: Build tests
         run: npm run build
