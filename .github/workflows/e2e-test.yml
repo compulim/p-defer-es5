@@ -45,7 +45,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          echo { \"esbuild\": \"*\", \"jest\": \"*\", \"p-defer\": \"*\", \"p-defer-es5\": \"${{ github.event.inputs.version }}\", \"webpack\": \"*\", \"webpack-cli\": \"*\" } > package.json
+          echo { \"dependencies\": { \"esbuild\": \"*\", \"jest\": \"*\", \"p-defer\": \"*\", \"p-defer-es5\": \"${{ github.event.inputs.version }}\", \"webpack\": \"*\", \"webpack-cli\": \"*\" } } > package.json
           npm install
 
       - uses: actions/download-artifact@v2
