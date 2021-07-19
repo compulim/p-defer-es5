@@ -1,4 +1,4 @@
-import createDeferred from 'p-defer-es5/lib/esm/index.mjs';
+import createDeferred from 'p-defer-es5';
 
 const { promise, resolve } = createDeferred();
 

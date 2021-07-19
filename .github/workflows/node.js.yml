@@ -83,6 +83,11 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
+      # NPM@7 is buggy right now, we will use NPM@6 until Node.js 16.x go LTS.
+      - name: Use NPM@6 on Node.js 16.x
+        if: ${{ matrix.node-version == '16.x' }}
+        run: npm i -g npm@6 --registry=https://registry.npmjs.org
+
       - uses: actions/download-artifact@v2
         with:
           name: e2e-tests
@@ -93,11 +98,8 @@ jobs:
 
       - name: Install dependencies
         run: |
-          npm install esbuild jest webpack webpack-cli
-          npm install p-defer *.tgz
-
-      - name: Build tests
-        run: npm run build
+          mv *.tgz package.tgz
+          npm install
 
       - name: Run tests
         run: npm test
@@ -116,6 +118,11 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
+      # NPM@7 is buggy right now, we will use NPM@6 until Node.js 16.x go LTS.
+      - name: Use NPM@6 on Node.js 16.x
+        if: ${{ matrix.node-version == '16.x' }}
+        run: npm i -g npm@6 --registry=https://registry.npmjs.org
+
       - uses: actions/download-artifact@v2
         with:
           name: e2e-tests
@@ -126,12 +133,8 @@ jobs:
 
       - name: Install dependencies
         run: |
-          npm install esbuild jest webpack webpack-cli
-          ren p-defer-es5-*.tgz p-defer-es5.tgz
-          npm install p-defer p-defer-es5.tgz
-
-      - name: Build tests
-        run: npm run build
+          ren *.tgz package.tgz
+          npm install
 
       - name: Run tests
         run: npm test
