@@ -70,6 +70,7 @@ jobs:
 
       - name: Run test
         run: |
+          cd node-${{ matrix.node-version }}
           docker run --name test-container test-image
           docker cp test-container:/var/test/actual.txt .
           diff expected.txt actual.txt
