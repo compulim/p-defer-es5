@@ -9,6 +9,6 @@ RUN \
   npm init --yes \
   npm install esbuild p-defer \
   npm install ./`ls *.tgz` \
-  la -la node_modules
+  ls -la node_modules
 
 ENTRYPOINT node ./test.mjs
