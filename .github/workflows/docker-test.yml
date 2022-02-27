@@ -43,7 +43,7 @@ jobs:
         if: ${{ matrix.node-version == '16.x' }}
         with:
           name: package
-          path: *.tgz
+          path: '*.tgz'
 
   test:
     needs: build
