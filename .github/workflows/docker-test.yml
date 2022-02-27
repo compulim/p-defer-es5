@@ -17,7 +17,7 @@ jobs:
     strategy:
       matrix:
         node-version: [14.x, 16.x]
-        npm-version: [latest, bundled]
+        npm-version: [default, latest]
 
     steps:
       - name: Checking out for ${{ github.ref }}
@@ -58,7 +58,7 @@ jobs:
       matrix:
         resolver: [commonjs, esbuild, esm, webpack4, webpack5]
         node-version: [14.x, 16.x]
-        npm-version: [latest, bundled]
+        npm-version: [default, latest]
 
     steps:
       - uses: actions/download-artifact@v2
