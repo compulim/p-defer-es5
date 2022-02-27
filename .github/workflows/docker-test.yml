@@ -68,7 +68,7 @@ jobs:
           name: package
 
       - name: Build test image
-      - run: |
+        run: |
           cd e2e-tests/node
           docker build --tag test-image .
 
