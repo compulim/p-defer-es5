@@ -17,7 +17,7 @@ jobs:
     strategy:
       matrix:
         node-version: [14.x, 16.x]
-        latest-npm: [true, false]
+        npm-version: [latest, bundled]
 
     steps:
       - name: Checking out for ${{ github.ref }}
@@ -29,7 +29,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Install latest NPM
-        if: ${{ matrix.latest-npm == 'true' }}
+        if: ${{ matrix.npm-version == 'latest' }}
         run: npm install -g npm
 
       - run: |
@@ -56,8 +56,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node-version: [14.x, 16.x]
         resolver: [commonjs, esm, webpack4, webpack5]
+        node-version: [14.x, 16.x]
 
     steps:
       - uses: actions/download-artifact@v2
@@ -79,5 +79,4 @@ jobs:
         run: |
           cd node-${{ matrix.node-version }}-${{ matrix.resolver }}
           docker run --name test-container test-image > actual.txt
-          docker cp test-container:/var/test/node-${{ matrix.node-version }}-${{ matrix.resolver }}/actual.txt .
           diff expected.txt actual.txt
