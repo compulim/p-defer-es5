@@ -16,7 +16,8 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x, 14.x, 16.x]
+        node-version: [14.x, 16.x]
+        latest-npm: [true, false]
 
     steps:
       - name: Checking out for ${{ github.ref }}
@@ -26,6 +27,10 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
+
+      - name: Install latest NPM
+        if: ${{ matrix.latest-npm == 'true' }}
+        run: npm install -g npm
 
       - run: |
           npm install
@@ -49,8 +54,10 @@ jobs:
     runs-on: ubuntu-latest
 
     strategy:
+      fail-fast: false
       matrix:
-        node-version: [12.x, 14.x, 16.x]
+        node-version: [14.x, 16.x]
+        resolver: [commonjs, esm, webpack4, webpack5]
 
     steps:
       - uses: actions/download-artifact@v2
@@ -63,14 +70,14 @@ jobs:
 
       - name: Build test image
         run: |
-          cd node-${{ matrix.node-version }}
+          cd node-${{ matrix.node-version }}-${{ matrix.resolver }}
           cp ../*.tgz .
           ls -la
           docker build --file Dockerfile --tag test-image .
 
       - name: Run test
         run: |
-          cd node-${{ matrix.node-version }}
-          docker run --name test-container test-image
-          docker cp test-container:/var/test/actual.txt .
+          cd node-${{ matrix.node-version }}-${{ matrix.resolver }}
+          docker run --name test-container test-image > actual.txt
+          docker cp test-container:/var/test/node-${{ matrix.node-version }}-${{ matrix.resolver }}/actual.txt .
           diff expected.txt actual.txt
