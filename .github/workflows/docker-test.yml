@@ -37,7 +37,7 @@ jobs:
         if: ${{ matrix.node-version == '16.x' }}
         with:
           name: e2e-test
-          path: '__e2e__/__tests__/**/*'
+          path: '__e2e__/**/*'
 
       - uses: actions/upload-artifact@v2
         if: ${{ matrix.node-version == '16.x' }}
@@ -54,11 +54,6 @@ jobs:
         node-version: [12.x, 14.x, 16.x]
 
     steps:
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
-
       - uses: actions/download-artifact@v2
         with:
           name: e2e-tests
@@ -69,7 +64,7 @@ jobs:
 
       - name: Build test image
         run: |
-          cd e2e-tests/node
+          cd e2e-tests/node-${{ matrix.node-version }}
           docker build --tag test-image .
 
       - name: Run test
