@@ -1,6 +1,6 @@
 import { createRequire } from 'module';
 import { dirname } from 'path';
-import { readPackageUpAsync } from 'read-pkg-up';
+import { readPackageUp } from 'read-pkg-up';
 import esbuild from 'esbuild';
 
 // The purpose of bundling using esbuild is to walk from the entrypoint and gather all source code in the target package.
@@ -11,7 +11,7 @@ import esbuild from 'esbuild';
 
   const {
     packageJson: { dependencies = {} }
-  } = await readPackageUpAsync({
+  } = await readPackageUp({
     cwd: dirname(createRequire(import.meta.url).resolve(packageName))
   });
 
