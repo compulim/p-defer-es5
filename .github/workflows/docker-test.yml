@@ -58,6 +58,7 @@ jobs:
       matrix:
         resolver: [commonjs, esbuild, esm, webpack4, webpack5]
         node-version: [14.x, 16.x]
+        npm-version: [latest, bundled]
 
     steps:
       - uses: actions/download-artifact@v2
@@ -73,7 +74,7 @@ jobs:
           cd node-${{ matrix.node-version }}-${{ matrix.resolver }}
           cp ../*.tgz .
           ls -la
-          docker build --file Dockerfile --tag test-image .
+          docker build --build-arg NPM_VERSION=${{ matrix.resolver }} --file Dockerfile --tag test-image .
 
       - name: Run test
         run: |
