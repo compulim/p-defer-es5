@@ -1,7 +1,7 @@
 FROM node:14-alpine
 
 WORKDIR /var/test/
-COPY package.tgz /var/test/
+COPY *.tgz /var/test/
 COPY test.mjs /var/test/
 
 RUN \
