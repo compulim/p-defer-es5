@@ -71,5 +71,5 @@ jobs:
       - name: Run test
         run: |
           docker run --name test-container test-image
-          docker cp test-image:/var/test/expected.txt .
+          docker cp test-container:/var/test/expected.txt .
           diff expected.txt actual.txt
