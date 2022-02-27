@@ -74,7 +74,7 @@ jobs:
           cd node-${{ matrix.node-version }}-${{ matrix.resolver }}
           cp ../*.tgz .
           ls -la
-          docker build --build-arg NPM_VERSION=${{ matrix.resolver }} --file Dockerfile --tag test-image .
+          docker build --build-arg NPM_VERSION=${{ matrix.npm-version }} --file Dockerfile --tag test-image .
 
       - name: Run test
         run: |
