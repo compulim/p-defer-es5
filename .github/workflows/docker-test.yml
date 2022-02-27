@@ -63,8 +63,9 @@ jobs:
 
       - name: Build test image
         run: |
-          cd node-${{ matrix.node-version }}
-          docker build --tag test-image .
+          cd node
+          cp ../*.tgz .
+          docker build --file Dockerfile-${{ matrix.node-version }} --tag test-image .
 
       - name: Run test
         run: |
