@@ -56,7 +56,14 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        resolver: [commonjs, esbuild, esm, webpack4, webpack5]
+        resolver:
+          - commonjs
+          - esbuild
+          - esm
+          - webpack4-commonjs
+          - webpack4-esm
+          - webpack5-commonjs
+          - webpack5-esm
         node-version: [14.x, 16.x]
         npm-version: [default, latest]
 
