@@ -28,7 +28,8 @@
     "postinstall:esm": "node ./scripts/esbuild.mjs p-defer ./src/index.mjs esm lib/esm/index.bundled.mjs && babel ./lib/esm/index.bundled.mjs --config-file ./babel.config.esm.json --out-file ./lib/esm/index.mjs",
     "postinstall": "npm run postinstall:commonjs && npm run postinstall:esm",
     "prepublishOnly:global": "mkdirp ./dist && esbuild ./src/global.mjs --bundle --format=iife --minify --outfile=./lib/esm/global.bundled.mjs && babel ./lib/esm/global.bundled.mjs --config-file ./babel.config.global.json | terser --compress --mangle --output ./dist/p-defer-es5.production.min.js",
-    "prepublishOnly": "npm run prepublishOnly:global"
+    "prepublishOnly": "npm run prepublishOnly:global",
+    "update": "npm install $(cat package.json | jq -r '.dependencies + .devDependencies | keys | .[]' | awk '{print $1 \"@latest\"}')"
   },
   "repository": {
     "type": "git",
