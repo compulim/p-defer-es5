@@ -63,7 +63,7 @@ jobs:
 
       - name: Build test image
         run: |
-          cd e2e-tests/node-${{ matrix.node-version }}
+          cd node-${{ matrix.node-version }}
           docker build --tag test-image .
 
       - name: Run test
