@@ -1,6 +1,6 @@
 # p-defer-es5
 
-[![npm version](https://img.shields.io/npm/v/p-defer-es5.svg)](https://www.npmjs.com/package/p-defer-es5) [![npm version](https://img.shields.io/npm/v/p-defer-es5/main.svg)](https://www.npmjs.com/package/p-defer-es5/v/main) [![Continuous deployment](https://github.com/compulim/p-defer-es5/actions/workflows/node.js.yml/badge.svg?branch=main)](https://github.com/compulim/p-defer-es5/actions/workflows/node.js.yml)
+[![npm version](https://img.shields.io/npm/v/p-defer-es5.svg)](https://www.npmjs.com/package/p-defer-es5) [![npm version](https://img.shields.io/npm/v/p-defer-es5/main.svg)](https://www.npmjs.com/package/p-defer-es5/v/main) [![Continuous deployment](https://github.com/compulim/p-defer-es5/actions/workflows/continuous-deployment.yml/badge.svg?branch=main)](https://github.com/compulim/p-defer-es5/actions/workflows/continuous-deployment.yml)
 
 This package is based on [`p-defer`](https://npmjs.com/package/p-defer). It did not contains an ES5 module. Importing the module directly or indirectly may break web apps running on ES5 browsers.
 
