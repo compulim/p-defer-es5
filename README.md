@@ -19,7 +19,7 @@ npm install p-defer p-defer-es5
 You can also use it in HTML:
 
 ```html
-<script src="https://unpkg.com/p-defer/dist/p-defer-es5.production.min.js"></script>
+<script src="https://unpkg.com/p-defer-es5/dist/p-defer-es5.production.min.js"></script>
 ```
 
 ## How it works
