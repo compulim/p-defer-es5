@@ -39,14 +39,14 @@ jobs:
 
       - name: Upload end-to-end tests
         uses: actions/upload-artifact@v2
-        if: ${{ matrix.node-version == '16' }}
+        if: ${{ matrix.node-version == '16' && matrix.npm-version == 'default' }}
         with:
           name: e2e-tests
           path: '__e2e__/**/*'
 
       - name: Upload package tarball
         uses: actions/upload-artifact@v2
-        if: ${{ matrix.node-version == '16' }}
+        if: ${{ matrix.node-version == '16' && matrix.npm-version == 'default' }}
         with:
           name: package
           path: '*.tgz'
