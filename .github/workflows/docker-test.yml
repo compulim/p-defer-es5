@@ -16,7 +16,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [14.x, 16.x]
+        node-version: [12.x, 14.x, 16.x]
         npm-version: [default, latest]
 
     steps:
@@ -65,7 +65,7 @@ jobs:
           - webpack4-esm
           - webpack5-commonjs
           - webpack5-esm
-        node-version: [14.x, 16.x]
+        node-version: [12.x, 14.x, 16.x]
         npm-version: [default, latest]
 
     steps:
