@@ -1,0 +1,96 @@
+name: Pull request validation
+
+on:
+  pull_request:
+
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version'
+        required: true
+        default: 'master'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: ['12', '14', '16']
+        npm-version: [default, latest]
+
+    steps:
+      - name: Checking out for ${{ github.ref }}
+        uses: actions/checkout@v2
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install latest NPM
+        if: ${{ matrix.npm-version == 'latest' }}
+        run: npm install -g npm
+
+      - run: |
+          npm install
+          npm run prepublishOnly
+          npm pack
+
+      - name: Upload end-to-end tests
+        uses: actions/upload-artifact@v2
+        if: ${{ matrix.node-version == '16' && matrix.npm-version == 'default' }}
+        with:
+          name: e2e-tests
+          path: '__e2e__/**/*'
+
+      - name: Upload package tarball
+        uses: actions/upload-artifact@v2
+        if: ${{ matrix.node-version == '16' && matrix.npm-version == 'default' }}
+        with:
+          name: package
+          path: '*.tgz'
+
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        resolver:
+          - esbuild
+          - node-commonjs
+          - node-esm
+          - node-global
+          - rollup
+          - webpack4-commonjs
+          - webpack4-esm
+          - webpack5-commonjs
+          - webpack5-esm
+        node-version: ['12', '14', '16']
+        npm-version: [default, latest]
+
+    steps:
+      - name: Download end-to-end tests
+        uses: actions/download-artifact@v2
+        with:
+          name: e2e-tests
+
+      - name: Download package tarball
+        uses: actions/download-artifact@v2
+        with:
+          name: package
+
+      - name: Build test image
+        run: |
+          cd ${{ matrix.resolver }}
+          cp ../*.tgz .
+          ls -la
+          docker build --build-arg NODE_VERSION=${{ matrix.node-version }} --build-arg NPM_VERSION=${{ matrix.npm-version }} --file Dockerfile --tag test-image .
+
+      - name: Run test
+        run: |
+          cd ${{ matrix.resolver }}
+          docker run --name test-container test-image > actual.txt
+          diff expected.txt actual.txt

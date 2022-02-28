@@ -6,6 +6,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Updated end-to-end tests, by [@compulim](https://github.com/compulim), in PR [#23](https://github.com/compulim/p-defer-es5/pull/23)
+   - Using Docker to isolate tests
+   - Test against different combinations of Node.js, NPM, and resolvers
+- Bumped dependencies, by [@compulim](https://github.com/compulim), in PR [#23](https://github.com/compulim/p-defer-es5/pull/23)
+   - [`@babel/cli@7.17.6`](https://npmjs.com/package/@babel/cli)
+   - [`@babel/core@7.17.5`](https://npmjs.com/package/@babel/core)
+   - [`@babel/plugin-transform-runtime@7.17.0`](https://npmjs.com/package/@babel/plugin-transform-runtime)
+   - [`@babel/preset-env@7.16.11`](https://npmjs.com/package/@babel/preset-env)
+   - [`@babel/runtime-corejs3@7.17.2`](https://npmjs.com/package/@babel/runtime-corejs3)
+   - [`esbuild@0.14.23`](https://npmjs.com/package/esbuild)
+   - [`read-pkg-up@9.1.0`](https://npmjs.com/package/read-pkg-up)
+   - [`terser@5.11.0`](https://npmjs.com/package/terser)
+
 ## [2.0.0] - 2021-07-20
 
 ### Added

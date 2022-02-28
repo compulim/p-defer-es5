@@ -4,7 +4,7 @@
 
 This package is based on [`p-defer`](https://npmjs.com/package/p-defer). It did not contains an ES5 module. Importing the module directly or indirectly may break web apps running on ES5 browsers.
 
-On install, this package will transpile your version of `p-defer` to make it compatible with ES5 browsers.
+On `npm install`, this package will transpile your version of `p-defer` to make it compatible with ES5 browsers. Then in your code, you use `p-defer-es5` instead of `p-defer`.
 
 Package authors should consider importing this package instead of `p-defer`, so your packages will not break your users due to having `p-defer` as a transient dependency.
 
@@ -24,7 +24,7 @@ You can also use it in HTML:
 
 ## How it works
 
-On `postinstall`, this package will run Babel and Webpack to transpile `p-defer` into a single file.
+On `postinstall`, this package will run `esbuild` to bundle `p-defer` into a single file. Then run Babel to transpile it for ES5.
 
 This package peer-depends on `p-defer`. Thus, you can select your own version of `p-defer`.
 
@@ -44,7 +44,7 @@ Be sure to include the original license and continue to depends on the package t
 
 ### Modify your bundler configuration
 
-Webpack do not transpile code under `/node_modules/` unless specified explicitly. You can modify `webpack.config.js` to include `/node_modules/p-defer/` and use `babel-loader` to transpile it on-the-fly.
+Some bundlers is configured not to transpile code under `/node_modules/` unless specified explicitly. You can modify bundler configuration to include `/node_modules/p-defer/` and use Babel to transpile it while bundling.
 
 ## Contributions
 
