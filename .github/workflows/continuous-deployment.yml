@@ -49,7 +49,7 @@ jobs:
         if: ${{ matrix.node-version == '16.x' }}
         with:
           name: e2e-tests
-          path: '__e2e__/**/*'
+          path: 'tests/e2e/**/*'
 
       - uses: actions/upload-artifact@v2
         if: ${{ matrix.node-version == '16.x' }}
