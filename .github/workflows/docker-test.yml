@@ -64,6 +64,7 @@ jobs:
           - node-commonjs
           - node-esm
           - node-global
+          - npm-alias
           - rollup
           - webpack4-commonjs
           - webpack4-esm
