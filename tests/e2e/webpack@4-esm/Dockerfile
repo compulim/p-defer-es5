@@ -13,7 +13,10 @@ RUN npm --version
 
 RUN npm init --yes
 RUN npm install p-defer
-RUN npm install ./`ls *.tgz`
-RUN npx -p webpack@5 -p webpack-cli webpack-cli
+RUN npm install ./`ls p-defer-es5-*.tgz`
+RUN npx -p webpack@4 -p webpack-cli webpack-cli
+
+# As we already bundled everything, the bundle should not need to load anything from /node_modules/.
+RUN rm -r node_modules
 
 ENTRYPOINT node ./dist/main.js

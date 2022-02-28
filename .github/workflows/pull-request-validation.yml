@@ -43,7 +43,7 @@ jobs:
         if: ${{ matrix.node-version == '16' && matrix.npm-version == 'default' }}
         with:
           name: e2e-tests
-          path: '__e2e__/**/*'
+          path: 'tests/e2e/**/*'
 
       - name: Upload package tarball
         uses: actions/upload-artifact@v2
@@ -66,10 +66,10 @@ jobs:
           - node-global
           - npm-alias
           - rollup
-          - webpack4-commonjs
-          - webpack4-esm
-          - webpack5-commonjs
-          - webpack5-esm
+          - webpack@4-commonjs
+          - webpack@4-esm
+          - webpack@5-commonjs
+          - webpack@5-esm
         node-version: ['12', '14', '16']
         npm-version: [default, latest]
 

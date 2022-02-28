@@ -13,9 +13,10 @@ RUN npm --version
 
 RUN npm init --yes
 RUN npm install p-defer
-RUN npm install ./`ls *.tgz`
+RUN npm install ./`ls p-defer-es5-*.tgz`
+RUN npx -p webpack@4 -p webpack-cli webpack-cli
 
-# The lowest version supported by ESBuild is "es2016".
-RUN npx esbuild ./index.js --bundle --minify --outfile=./dist/main.js --target=es2016
+# As we already bundled everything, the bundle should not need to load anything from /node_modules/.
+RUN rm -r node_modules
 
 ENTRYPOINT node ./dist/main.js
