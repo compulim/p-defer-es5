@@ -62,6 +62,7 @@ jobs:
           - esbuild
           - node-commonjs
           - node-esm
+          - node-global
           - rollup
           - webpack4-commonjs
           - webpack4-esm
