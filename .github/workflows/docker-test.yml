@@ -16,7 +16,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x, 14.x, 16.x]
+        node-version: ['12', '14', '16']
         npm-version: [default, latest]
 
     steps:
@@ -38,13 +38,13 @@ jobs:
           npm pack
 
       - uses: actions/upload-artifact@v2
-        if: ${{ matrix.node-version == '16.x' }}
+        if: ${{ matrix.node-version == '16' }}
         with:
           name: e2e-tests
           path: '__e2e__/**/*'
 
       - uses: actions/upload-artifact@v2
-        if: ${{ matrix.node-version == '16.x' }}
+        if: ${{ matrix.node-version == '16' }}
         with:
           name: package
           path: '*.tgz'
@@ -57,15 +57,15 @@ jobs:
       fail-fast: false
       matrix:
         resolver:
-          - commonjs
           - esbuild
-          - esm
+          - node-commonjs
+          - node-esm
           - rollup
           - webpack4-commonjs
           - webpack4-esm
           - webpack5-commonjs
           - webpack5-esm
-        node-version: [12.x, 14.x, 16.x]
+        node-version: ['12', '14', '16']
         npm-version: [default, latest]
 
     steps:
@@ -79,13 +79,13 @@ jobs:
 
       - name: Build test image
         run: |
-          cd node-${{ matrix.node-version }}-${{ matrix.resolver }}
+          cd ${{ matrix.resolver }}
           cp ../*.tgz .
           ls -la
-          docker build --build-arg NPM_VERSION=${{ matrix.npm-version }} --file Dockerfile --tag test-image .
+          docker build --build-arg NODE_VERSION=${{ matrix.node-version }} --build-arg NPM_VERSION=${{ matrix.npm-version }} --file Dockerfile --tag test-image .
 
       - name: Run test
         run: |
-          cd node-${{ matrix.node-version }}-${{ matrix.resolver }}
+          cd ${{ matrix.resolver }}
           docker run --name test-container test-image > actual.txt
           diff expected.txt actual.txt

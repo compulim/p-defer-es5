@@ -1,4 +1,6 @@
-FROM node:14-alpine
+ARG NODE_VERSION=16
+
+FROM node:$NODE_VERSION-alpine
 ARG NPM_VERSION
 
 WORKDIR /var/test/
@@ -8,6 +10,6 @@ RUN if [[ "$NPM_VERSION" == "latest" ]] ; then npm install -g npm ; fi
 RUN npm init --yes
 RUN npm install p-defer
 RUN npm install ./`ls *.tgz`
-RUN npx esbuild ./index.js --bundle --minify --outfile=./dist/main.js --target=es2016
+RUN npx -p webpack@4 -p webpack-cli webpack-cli
 
 ENTRYPOINT node ./dist/main.js
