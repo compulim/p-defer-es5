@@ -55,11 +55,11 @@
     "@babel/runtime-corejs3": "^7.17.2",
     "esbuild": "^0.14.23",
     "mkdirp": "^1.0.4",
-    "read-pkg-up": "^9.1.0",
-    "terser": "^5.11.0"
+    "read-pkg-up": "^9.1.0"
   },
   "devDependencies": {
-    "p-defer": "^4.0.0"
+    "p-defer": "^4.0.0",
+    "terser": "^5.11.0"
   },
   "peerDependencies": {
     "p-defer": ">= 4.0.0"
