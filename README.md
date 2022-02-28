@@ -1,6 +1,6 @@
 # p-defer-es5
 
-[![npm version](https://img.shields.io/npm/v/p-defer-es5.svg)](https://www.npmjs.com/package/p-defer-es5) [![Build Status](https://travis-ci.org/compulim/p-defer-es5.svg?branch=master)](https://travis-ci.org/compulim/p-defer-es5)
+[![npm version](https://img.shields.io/npm/v/p-defer-es5.svg)](https://www.npmjs.com/package/p-defer-es5) [![Build Status](https://travis-ci.org/compulim/p-defer-es5.svg?branch=main)](https://travis-ci.org/compulim/p-defer-es5)
 
 This package is based on [`p-defer`](https://npmjs.com/package/p-defer). It did not contains an ES5 module. Importing the module directly or indirectly may break web apps running on ES5 browsers.
 
