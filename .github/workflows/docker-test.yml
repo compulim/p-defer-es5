@@ -33,8 +33,9 @@ jobs:
         run: npm install -g npm
 
       - run: |
-          npm install
+          npm ci
           npm run prepublishOnly
+          rm -r lib
           npm pack
 
       - name: Upload end-to-end tests
@@ -63,6 +64,7 @@ jobs:
           - node-commonjs
           - node-esm
           - node-global
+          - npm-alias
           - rollup
           - webpack4-commonjs
           - webpack4-esm
