@@ -1,3 +1,7 @@
+## Summary
+
+<!-- Explain the purpose of this pull request in one line. -->
+
 ## Changelog
 
 ### Fixed/Added/Changed
@@ -6,7 +10,7 @@
 
 ## Design considerations
 
-<!-- Explains what designs we considered and how we chose the final design. -->
+<!-- Explains how we come up with the final design and design candidates (if any). -->
 
 ## Specific changes
 
