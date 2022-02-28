@@ -66,10 +66,10 @@ jobs:
           - node-global
           - npm-alias
           - rollup
-          - webpack4-commonjs
-          - webpack4-esm
-          - webpack5-commonjs
-          - webpack5-esm
+          - webpack@4-commonjs
+          - webpack@4-esm
+          - webpack@5-commonjs
+          - webpack@5-esm
         node-version: ['12', '14', '16']
         npm-version: [default, latest]
 
