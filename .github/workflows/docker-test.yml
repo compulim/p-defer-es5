@@ -60,6 +60,7 @@ jobs:
           - commonjs
           - esbuild
           - esm
+          - rollup
           - webpack4-commonjs
           - webpack4-esm
           - webpack5-commonjs
