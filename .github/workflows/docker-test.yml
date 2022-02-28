@@ -33,8 +33,9 @@ jobs:
         run: npm install -g npm
 
       - run: |
-          npm install
+          npm ci
           npm run prepublishOnly
+          rm -r lib
           npm pack
 
       - name: Upload end-to-end tests
