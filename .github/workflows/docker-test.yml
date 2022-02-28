@@ -37,13 +37,15 @@ jobs:
           npm run prepublishOnly
           npm pack
 
-      - uses: actions/upload-artifact@v2
+      - name: Upload end-to-end tests
+        uses: actions/upload-artifact@v2
         if: ${{ matrix.node-version == '16' }}
         with:
           name: e2e-tests
           path: '__e2e__/**/*'
 
-      - uses: actions/upload-artifact@v2
+      - name: Upload package tarball
+        uses: actions/upload-artifact@v2
         if: ${{ matrix.node-version == '16' }}
         with:
           name: package
@@ -69,11 +71,13 @@ jobs:
         npm-version: [default, latest]
 
     steps:
-      - uses: actions/download-artifact@v2
+      - name: Download end-to-end tests
+        uses: actions/download-artifact@v2
         with:
           name: e2e-tests
 
-      - uses: actions/download-artifact@v2
+      - name: Download package tarball
+        uses: actions/download-artifact@v2
         with:
           name: package
 
