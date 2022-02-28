@@ -74,8 +74,6 @@ jobs:
 
     needs:
       - build
-      - test-linux
-      - test-windows
 
     runs-on: ubuntu-latest
 
@@ -95,8 +93,6 @@ jobs:
 
     needs:
       - build
-      - test-linux
-      - test-windows
 
     runs-on: ubuntu-latest
 
