@@ -1,5 +1,4 @@
 import createDeferred from 'p-defer-es5';
-// const createDeferred = require('p-defer-es5');
 
 const { promise, resolve } = createDeferred();
 

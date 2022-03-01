@@ -13,6 +13,6 @@ RUN npm --version
 
 RUN npm init --yes
 RUN npm install p-defer
-RUN npm install ./`ls *.tgz`
+RUN npm install ./`ls p-defer-es5-*.tgz`
 
 ENTRYPOINT node ./index.js
